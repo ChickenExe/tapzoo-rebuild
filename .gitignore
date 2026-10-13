@@ -1,0 +1,7 @@
+node_modules/
+dist/
+release/
+# Extracted from the original IPA by `npm run extract`; Pocket Gems' art, not ours to commit.
+public/game/
+build/icon.png
+public/custom-art/index.json

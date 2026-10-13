@@ -1,0 +1,67 @@
+{
+  "name": "tapzoo-rebuild",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Desktop rebuild of Tap Zoo 2.5.7 from the original game data",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "extract": "node tools/extract.mjs",
+    "dev": "node tools/art-index.mjs && vite",
+    "build": "node tools/art-index.mjs && vite build",
+    "start": "vite build && electron .",
+    "dist:mac": "vite build && electron-builder --mac",
+    "dist:win": "vite build && electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
+    "fflate": "^0.8.3",
+    "pngjs": "^7.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  },
+  "allowScripts": {
+    "electron@44.7.0": true
+  },
+  "build": {
+    "appId": "local.tapzoo.rebuild",
+    "productName": "Tap Zoo",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.games",
+      "identity": null
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
